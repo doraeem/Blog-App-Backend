@@ -11,7 +11,13 @@ use Illuminate\Support\Facades\Validator;
 class BlogController extends Controller
 {
      //will return all blogs
-    public function index(){       
+    public function index(){  
+       $blogs =  Blog::orderBy('created_at' , 'DESC')-> get();  
+       
+       return response()->json([
+        'status' => true,
+        'data' => $blogs
+       ]);
 
     }
     //will return a single blog
